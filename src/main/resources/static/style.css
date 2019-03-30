@@ -1,0 +1,36 @@
+#caption{
+    height: 100px;
+    background-color: cadetblue;
+    font-size: 20px;
+    padding: 20px;
+}
+
+#content{
+    background-color: bisque;
+    height: 1000px;
+}
+
+#footer{
+    height: 100px;
+    background-color: cadetblue;
+}
+
+
+a.tilelink{
+    color: black;
+    text-decoration: none;
+}
+
+.options{
+    float:left;
+    height: 80px;
+    width: 200px;
+    border: black dotted 2px;
+    margin-left: auto;
+    margin-left: 30px;
+    margin-right: 30px;
+    margin-top: 10px;
+    text-align: center;
+    font-size: 30px;
+    background-color: lightgrey;
+}

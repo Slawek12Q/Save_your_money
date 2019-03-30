@@ -2,14 +2,21 @@
 <html data-ng-app="app">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
     <title></title>
 </head>
 <body>
-<a href="#!list">Homepage</a>
-<a href="#!new">Add New Book</a>
+<div id = "caption">
+<a href="#!list" class="tilelink"><div class = "options">Homepage</div> </a>
+    <a href="#!new" class="tilelink"><div class = "options">Add New Book</div></a>
+</div>
 
+<div id="content">
 <div ng-view></div>
+</div>
 
+
+<div id="footer">Created by Sławomir Guzik</div>
 <script type="text/javascript" src="bower_components/angular/angular.js"></script>
 <script type="text/javascript" src="bower_components/angular-route/angular-route.js"></script>
 <script type="text/javascript" src="bower_components/angular-resource/angular-resource.js"></script>
