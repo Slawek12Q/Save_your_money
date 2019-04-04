@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('app', ['ngRoute'])
+angular.module('app', ['ngRoute', 'ngResource'])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/list', {
@@ -22,32 +22,19 @@ angular.module('app', ['ngRoute'])
                 redirectTo: '/list'
             });
     })
-    .factory('Book', function() {
-        function Book(id, title, author, isbn) {
-            this.id = id;
-            this.title = title;
-            this.author = author;
-            this.isbn = isbn;
-        }
-        return Book;
+    .constant('BOOK_ENDPOINT', '/api/books/:id')
+    .factory('Book', function($resource, BOOK_ENDPOINT) {
+        return $resource(BOOK_ENDPOINT);
     })
     .service('Books', function(Book) {
-        var books = [
-            new Book(0, 'Henryk Sienkiewicz', 'Krzyżacy', '123456789'),
-            new Book(1, 'Adam Mickiewicz', 'Dziady', "1324354657"),
-            new Book(2, 'Maria Konopnicka', 'Dym', "9786756453")
-        ];
-        this.size = function() {
-            return books.length;
-        }
         this.getAll = function() {
-            return books;
+            return Book.query();
         }
         this.get = function(index) {
-            return books[index];
+            return Book.get({id: index});
         }
         this.add = function(book) {
-            books.push(book);
+            book.$save();
         }
     })
     .controller('ListController', function(Books) {
@@ -63,7 +50,6 @@ angular.module('app', ['ngRoute'])
         var vm = this;
         vm.book = new Book();
         vm.saveBook = function() {
-            vm.book.id = Books.size();
             Books.add(vm.book);
             vm.book = new Book();
         }
