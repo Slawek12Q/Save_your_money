@@ -35,6 +35,7 @@ angular.module('app', ['ngRoute', 'ngResource'])
         }
         this.add = function(book) {
             book.$save();
+
         }
     })
     .controller('ListController', function(Books) {
